@@ -1,4 +1,36 @@
-  <!DOCTYPE html>
+<?php
+$hostname = "localhost";
+$username = "root";
+$password = "";
+$db = "foodweb";
+
+$con = new mysqli($hostname,$username,$password,$db);
+if(!$con)
+{
+    die('database connection faild ');
+}
+if(isset($_POST["submit"]))
+{
+    $email = $_POST['email'];
+    $password = $_POST['pw'];
+    $s = "SELECT * FROM foodweb_table WHERE CEmail = '{$email}' AND C_Password = '{$password}'";
+
+    $result = mysqli_query($con,$s);
+    $num = mysqli_num_rows($result);
+    if($num ==1)
+    {
+        echo "Login Successful";
+        header('location:index.html');
+    }
+    else
+    {
+        echo "Check Your email and password again";
+        header('location:Log.php');
+    }
+}
+?>
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -57,23 +89,27 @@
   <main id="main">
 <br><br><br><br><br><br>
 <div class="cont">
-  <form action="login.php" method="POST">
-  <div class="form sign-in">
-  <h2>WELCOME BACK</h2>
-    <label>
-      <span>Email</span>
-      <input type="email" name="email"/>
-    </label>
-    <br>
-    <label>
-      <span>Password</span>
-      <input type="password" name="pw"/>
-    </label>
-    <br>
-    <button type="submit" id="form-submit" class="main-button">Log In</button>
-    
-  </div>
+
+
+  <form action="Log.php" method="POST">
+    <div class="form sign-in">
+    <h2>WELCOME BACK</h2>
+      <label>
+        <span>Email</span>
+        <input type="email" name="email"/>
+      </label>
+      <br>
+      <label>
+        <span>Password</span>
+        <input type="password" name="pw"/>
+      </label>
+      <br>
+      <button type="submit" id="form-submit" class="main-button" name="submit">Log In</button>
+      
+    </div>
   </form>
+
+
   <div class="sub-cont">
     <div class="img">
       <div class="img__text m--up">

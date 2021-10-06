@@ -27,7 +27,7 @@ if(isset($_POST["submit"]))
     else
     {
         echo "Check Your email and password again";
-        header('location:Log.html')
+        header('location:Log.html');
     }
 }
 ?>
