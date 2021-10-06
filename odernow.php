@@ -7,7 +7,7 @@ $db = "foodweb";
 $con = new mysqli($hostname,$username,$password,$db);
 if(!$con)
 {
-    die('database connection faild '.mysql_error());
+    die('database connection faild ');
 }
 if(isset($_POST["submit"]))
 {   
@@ -30,4 +30,3 @@ if(isset($_POST["submit"]))
     mysqli_close($con);
 }
 ?>
-}
