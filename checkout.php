@@ -12,7 +12,6 @@ if(!$con)
 if(isset($_POST["submit"]))
 {   
     $quantity = 1;
-    // $_GET['quantity']
     $name = $_POST['name'];
     $Email = $_POST['email'];
     $Address = $_POST['address'];

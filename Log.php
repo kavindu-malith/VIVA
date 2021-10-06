@@ -30,6 +30,48 @@ if(isset($_POST["submit"]))
 }
 ?>
 
+<?php
+$hostname = "localhost";
+$username = "root";
+$password = "";
+$db = "foodweb";
+
+$con = new mysqli($hostname,$username,$password,$db);
+if(!$con)
+{
+    die('database connection faild ');
+}
+if(isset($_POST["submit"]))
+{
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $password = $_POST['pw'];
+
+    $s = "SELECT * FROM foodweb_table WHERE CEmail = '{$email}'";
+
+    $result = mysqli_query($con,$s);
+    $num = mysqli_num_rows($result);
+
+    if($num ==1)
+    {
+        echo "User Already Registered";
+    }
+    else
+    {
+        $reg = "INSERT INTO foodweb_table (CName,CEmail,C_Password) VALUES ('{$name}','{$email}','{$password}')";
+        if(mysqli_query($con,$reg))
+        {
+            echo "Registration Successful";
+        }
+        else
+        {
+            echo "Error" . $sql . " " . mysqli_error($con);
+        }
+        mysqli_close($con);
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -125,7 +167,7 @@ if(isset($_POST["submit"]))
         <span class="m--in">Log In</span>
       </div>
     </div>
-    <form action="Signin.php" method="POST">
+    <form action="Log.php" method="POST">
     <div class="form sign-up">
       <h2>TIME TO FEEL LIKE HOME,</h2>
       <label>
@@ -143,7 +185,7 @@ if(isset($_POST["submit"]))
         <input type="password" name="pw"/>
       </label>
       <br>
-        <button type="submit" id="form-submit" class="main-button">Sign In</button>
+        <button type="submit" id="form-submit" class="main-button" name="submit">Sign In</button>
     </div>
     </form>
   </div>
