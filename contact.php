@@ -18,7 +18,7 @@ if(isset($_POST["submit"]))
     $Subject = $_POST['subject'];
     $message = $_POST['message'];
 
-    $sql = "INSERT INTO complaints (Name,E_mail,Subject,Complaint)VALUES('$name','$Email','$Subject','$message')";
+    $sql = "INSERT INTO foodweb_table (CName,CEmail,Subject,Complaint)VALUES('$name','$Email','$Subject','$message')";
     if(mysqli_query($con,$sql))
     {
         echo "Action Complited !";
@@ -203,7 +203,7 @@ if(isset($_POST["submit"]))
                             </div>
                             <div class="col-lg-12">
                               <fieldset>
-                                <button type="submit" id="form-submit" class="main-button">Send Message</button>
+                                <button type="submit" id="form-submit" class="main-button" name="submit">Send Message</button>
                               </fieldset>
                             </div>
                           </div>
