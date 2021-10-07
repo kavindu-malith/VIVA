@@ -15,10 +15,9 @@ if(isset($_POST["submit"]))
 {
     $name = $_POST['name'];
     $Email = $_POST['email'];
-    $Subject = $_POST['subject'];
     $message = $_POST['message'];
 
-    $sql = "INSERT INTO foodweb_table (CName,CEmail,Subject,Complaint)VALUES('$name','$Email','$Subject','$message')";
+    $sql = "INSERT INTO foodweb_table (CName,CEmail,Complaint)VALUES('{$name}','{$Email}','{$message}')";
     if(mysqli_query($con,$sql))
     {
         echo "Action Complited !";
